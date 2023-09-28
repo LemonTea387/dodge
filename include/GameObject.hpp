@@ -10,4 +10,13 @@ class Drawable {
   virtual void Render(RenderWindow &renderWindow) = 0;
 };
 
+struct Transform {
+  int x;
+  int y;
+};
+class Transformable {
+protected:
+  Transform GetTransform() { return transform; };
+  Transform transform;
+};
 #endif
