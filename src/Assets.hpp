@@ -4,10 +4,10 @@
 #include "AssetManager.hpp"
 #include <vector>
 namespace Assets {
+enum AssetID { STICKMAN };
 const std::vector<AssetManager::AssetMapping> assets{
-  {0, "assets/stickman.png"},
+    {AssetID::STICKMAN, "assets/stickman.png"},
 };
-
-}
+} // namespace Assets
 
 #endif
