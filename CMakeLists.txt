@@ -14,9 +14,11 @@ add_executable(dodge-platformer
   src/main.cpp
   src/DodgeGame.cpp
   src/Scene/GameScene.cpp
+  src/Player.cpp
   )
 
 include_directories(include)
+include_directories(src)
 include_directories(SDL2::Headers)
 include_directories(SDL2_image::Headers)
 target_link_libraries( dodge-platformer PRIVATE
