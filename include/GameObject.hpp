@@ -11,12 +11,14 @@ class Drawable {
 };
 
 struct Transform {
-  int x;
-  int y;
+  SDL_Rect bounds;
 };
 class Transformable {
 protected:
   Transform GetTransform() { return transform; };
+  void SetBounds(const SDL_Rect &newBounds) { transform.bounds = newBounds; };
+
+private:
   Transform transform;
 };
 #endif
