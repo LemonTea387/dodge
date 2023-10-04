@@ -4,17 +4,34 @@
 #include <glm/vec2.hpp>
 #include <vector>
 
+struct BoxCollider {
+  glm::vec2 dimension;
+};
+
+enum BodyType{
+  STATIC,
+  DYNAMIC,
+  KINEMATIC
+};
+
 struct RigidBody {
   float mass;
   glm::vec2 force;
   glm::vec2 velocity;
   glm::vec2 position;
+  BoxCollider collider;
+  BodyType type;
+};
+
+struct Collision {
+  RigidBody* A;
+  RigidBody* B;
 };
 
 class World {
 public:
   World(glm::vec2 gravity) : m_Gravity{gravity} {};
-  ~World();
+  ~World(){};
   void Step(float deltaTime) {
     for (auto bodyPtr : m_Bodies) {
       // F = ma, where a = g

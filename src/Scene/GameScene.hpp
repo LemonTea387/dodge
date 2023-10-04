@@ -2,6 +2,7 @@
 #define GAME_SCENE_H
 
 #include <Scene/Scene.hpp>
+#include "Physics/Physics.hpp"
 #include "Player.hpp"
 
 class GameScene : public Scene {
@@ -12,6 +13,7 @@ public:
   virtual void Render(RenderWindow &renderWindow) override;
 private:
   std::unique_ptr<Player> m_Player;
+  std::unique_ptr<World> m_PhysicsWorld;
 };
 
 #endif

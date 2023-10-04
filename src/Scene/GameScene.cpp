@@ -1,7 +1,10 @@
 #include "GameScene.hpp"
 #include <SDL_render.h>
 
-GameScene::GameScene() : m_Player{new Player()} {}
+GameScene::GameScene()
+    : m_Player{new Player()}, m_PhysicsWorld{new World({0., -9.81})} {
+
+}
 
 GameScene::~GameScene() {}
 
