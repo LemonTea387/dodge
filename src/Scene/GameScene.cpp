@@ -2,8 +2,9 @@
 #include <SDL_render.h>
 
 GameScene::GameScene()
-    : m_Player{new Player()}, m_PhysicsWorld{new World({0., -9.81})} {
-
+    : m_Player{new Player()},
+      m_PhysicsWorld{new World({0., -9.81}, {800, 600})} {
+  m_PhysicsWorld->AddBody(m_Player->GetBody());
 }
 
 GameScene::~GameScene() {}

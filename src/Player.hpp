@@ -11,6 +11,7 @@ public:
   ~Player();
   virtual void Update(const SDL_Event &event, double deltaTime) override;
   virtual void Render(RenderWindow &renderWindow) override;
+  RigidBody *GetBody() { return &m_Body; };
 
 private:
   std::shared_ptr<SDL_Texture> m_PlayerTexture{nullptr};
