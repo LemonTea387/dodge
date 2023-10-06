@@ -27,21 +27,21 @@ struct Collision {
 
 class World {
 public:
-  World(glm::vec2 gravity, glm::vec2 size) : m_Gravity{gravity}, m_Dimension{size} {};
+  World(glm::vec2 gravity, glm::vec2 size, float pixelPerMeter)
+      : m_Gravity{gravity}, m_Dimension{size}, m_PPM{pixelPerMeter} {};
   ~World(){};
   void Step(float deltaTime) {
     for (auto bodyPtr : m_Bodies) {
+      bodyPtr->force += bodyPtr->mass * m_Gravity;
       // v = v0 + F/m t
       //   = v0 + at
-      bodyPtr->velocity += bodyPtr->force / bodyPtr->mass * deltaTime;
+      bodyPtr->velocity += bodyPtr->force / bodyPtr->mass * deltaTime / m_PPM;
       // displacement = vt
-      bodyPtr->position += bodyPtr->velocity * deltaTime;
+      bodyPtr->position += bodyPtr->velocity * deltaTime / m_PPM;
+      bodyPtr->force = {0., 0.};
     }
   };
-  void AddBody(RigidBody *body) {
-    m_Bodies.push_back(body);
-    body->force += body->mass * m_Gravity;
-  };
+  void AddBody(RigidBody *body) { m_Bodies.push_back(body); };
   void RemoveBody(RigidBody *body) {
     for (int i = 0; i < m_Bodies.size(); i++) {
       auto bodyPtr = m_Bodies[i];
@@ -56,8 +56,7 @@ private:
   std::vector<RigidBody *> m_Bodies;
   glm::vec2 m_Gravity;
   glm::vec2 m_Dimension;
+  float m_PPM;
 };
-
-class Fixture {};
 
 #endif

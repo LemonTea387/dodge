@@ -22,11 +22,11 @@ void DodgeGame::Run() {
         quit = true;
         break;
       }
-      m_SceneStack.top()->Update(e, deltaTime);
     }
     currentTime = SDL_GetTicks();
     deltaTime = currentTime - lastTime;
     lastTime = currentTime;
+    m_SceneStack.top()->Update(e, deltaTime);
 
     // Clear Screen
     m_RenderWindow.RendererClearScreen(255, 255, 255, 255);
