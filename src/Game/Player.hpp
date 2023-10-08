@@ -5,7 +5,7 @@
 #include "Physics/Physics.hpp"
 #include <SDL_render.h>
 #include <memory>
-class Player : public Drawable, public Updatable, public Transformable {
+class Player : public Drawable, public Updatable {
 public:
   Player();
   ~Player();

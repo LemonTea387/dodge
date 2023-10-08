@@ -5,8 +5,9 @@
 #include <SDL_events.h>
 class Scene {
 public:
-  virtual void Update(const SDL_Event &event, double deltaTime) {};
-  virtual void Render(RenderWindow &renderWindow) {};
+  virtual void Update(double deltaTime) = 0;
+  virtual void HandleEvents(const SDL_Event &event) = 0;
+  virtual void Render(RenderWindow &renderWindow) = 0;
   Scene(){};
   ~Scene(){};
 };

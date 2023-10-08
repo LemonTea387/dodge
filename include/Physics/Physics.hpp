@@ -32,20 +32,21 @@ public:
   ~World(){};
   void Step(float deltaTime) {
     for (auto bodyPtr : m_Bodies) {
-      bodyPtr->force += bodyPtr->mass * m_Gravity;
+      // Only Dynamic and Kinematic bodies move
+      if (bodyPtr->type == BodyType::STATIC)
+        continue;
       // v = v0 + F/m t
       //   = v0 + at
-      bodyPtr->velocity += bodyPtr->force / bodyPtr->mass * deltaTime / m_PPM;
+      bodyPtr->velocity +=
+          (bodyPtr->force + m_Gravity) / bodyPtr->mass * deltaTime / m_PPM;
       // displacement = vt
       bodyPtr->position += bodyPtr->velocity * deltaTime / m_PPM;
-      bodyPtr->force = {0., 0.};
     }
   };
   void AddBody(RigidBody *body) { m_Bodies.push_back(body); };
   void RemoveBody(RigidBody *body) {
     for (int i = 0; i < m_Bodies.size(); i++) {
-      auto bodyPtr = m_Bodies[i];
-      if (body == bodyPtr) {
+      if (body == m_Bodies[i]) {
         m_Bodies.erase(m_Bodies.begin() + i);
         break;
       }

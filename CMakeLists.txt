@@ -23,7 +23,8 @@ add_executable(dodge-platformer
   src/main.cpp
   src/DodgeGame.cpp
   src/Scene/GameScene.cpp
-  src/Player.cpp
+  src/Game/Player.cpp
+  src/Game/Platform.cpp
   )
 
 include_directories(include)

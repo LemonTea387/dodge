@@ -4,8 +4,8 @@
 #include <stdint.h>
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
-#include <SDL_render.h>
 #include <SDL_image.h>
+#include <SDL_render.h>
 #include <SDL_video.h>
 #include <string>
 
@@ -23,6 +23,7 @@ public:
     SDL_Quit();
   }
   SDL_Renderer *GetRenderer() { return m_Renderer; };
+  SDL_Window *GetWindow() { return m_Window; };
   void RendererClearScreen(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     // Clear screen
     SDL_SetRenderDrawColor(m_Renderer, r, g, b, a);
